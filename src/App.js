@@ -12,6 +12,7 @@ import uuidv1 from 'uuid/v1';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGhost,faTrash,faEdit,faPlusSquare } from '@fortawesome/free-solid-svg-icons'
+import './styles.css';
 
 library.add(faGhost)
 library.add(faTrash)
@@ -147,7 +148,7 @@ class App extends Component {
                 position: 'absolute',
                 width: 400,
                 top: top + '%', left: left + '%',
-                transform: `translate(-${top}%, -${left}%)`,
+                transform: `translate(-${top}%, 0%)`,
                 border: '1px solid #e5e5e5',
                 backgroundColor: 'white',
                 boxShadow: '0 5px 15px rgba(0,0,0,.5)',
@@ -163,8 +164,6 @@ class App extends Component {
 
         return (
             <div className="App">
-
-
 
                 <div style={{marginBottom:'40px',marginTop:'20px',}} onClick={e=>{
                     e.preventDefault()
@@ -186,8 +185,8 @@ class App extends Component {
 
                         <form >
 
-                            <div style={{marginBottom:'10px'}}>
-                                <label>Title:</label>
+                            <div className={'modalForm'}>
+                                <label className={'labelSpace'}>Title:</label>
                                 <input required={true} type={'text'}
                                        onBlur={(e)=>
                                        {this.setState({newMovie: {
@@ -197,7 +196,7 @@ class App extends Component {
                                        }></input>
                             </div>
                             <div style={{marginBottom:'10px'}}>
-                                <label>Year:</label>
+                                <label className={'labelSpace'}>Year:</label>
                                 <input required={true} type={'text'}
                                        onBlur={(e)=> {this.setState({newMovie: {
                                                ...this.state.newMovie,
@@ -205,7 +204,7 @@ class App extends Component {
                                 ></input>
                             </div>
                             <div style={{marginBottom:'10px'}}>
-                                <label>Runtime:</label>
+                                <label className={'labelSpace'}>Runtime:</label>
                                 <input required={true} type={'text'}
                                        onBlur={(e)=> {this.setState({newMovie: {
                                                ...this.state.newMovie,
@@ -213,7 +212,7 @@ class App extends Component {
                                 ></input>
                             </div>
                             <div style={{marginBottom:'10px'}}>
-                                <label>Director:</label>
+                                <label className={'labelSpace'}>Director:</label>
                                 <input required={true} type={'text'}
                                        onBlur={(e)=> {this.setState({newMovie: {
                                                ...this.state.newMovie,
@@ -221,16 +220,21 @@ class App extends Component {
                                 ></input>
                             </div>
                             <div>
-                                <label>Genre:</label>
+                                <label className={'labelSpace'}>Genre:</label>
                                 <input required={true} type={'text'}
                                        onBlur={(e)=> {this.setState({newMovie: {
                                                ...this.state.newMovie,
                                                Genre: e.target.value}})}}
                                 ></input>
-                                <button onClick={(e)=>{
-                                    e.preventDefault();
-                                    this.addNewMovie(this.state.newMovie);
-                                }}>Add Movie</button>
+                                <div className={'btnSpace'}>
+                                    <Button className={'labelSpace'} onClick={(e)=>{
+                                        e.preventDefault();
+                                        this.addNewMovie(this.state.newMovie);
+                                    }}>Add Movie</Button>
+                                    <Button onClick={(e)=>{
+                                        this.closeAdd();
+                                    }}>Cancel</Button>
+                                </div>
                             </div>
                         </form>
 
@@ -259,8 +263,8 @@ class App extends Component {
                         <h4 id='modal-label'>Movie details:</h4>
                         <form >
 
-                            <div style={{marginBottom:'10px'}}>
-                                <label>Title:</label>
+                            <div className={'modalForm'}>
+                                <label className={'labelSpace'}>Title:</label>
                                 <input type={'text'} defaultValue={this.state.currentMovie.Title}
                                        onBlur={(e)=> {
                                            title = e.target.value
@@ -268,36 +272,41 @@ class App extends Component {
                                        }></input>
                             </div>
                             <div style={{marginBottom:'10px'}}>
-                                <label>Year:</label>
+                                <label className={'labelSpace'}>Year:</label>
                                 <input type={'text'} defaultValue={this.state.currentMovie.Year}
                                        onBlur={(e)=> {year = e.target.value}}
                                 ></input>
                             </div>
                             <div style={{marginBottom:'10px'}}>
-                                <label>Runtime:</label>
+                                <label className={'labelSpace'}>Runtime:</label>
                                 <input type={'text'} defaultValue={this.state.currentMovie.Runtime}
                                        onBlur={(e)=> { _runtime = e.target.value }}
                                 ></input>
                             </div>
                             <div style={{marginBottom:'10px'}}>
-                                <label>Director:</label>
+                                <label className={'labelSpace'}>Director:</label>
                                 <input type={'text'} defaultValue={this.state.currentMovie.Director}
                                        onBlur={(e)=> { director = e.target.value }}
                                 ></input>
                             </div>
                             <div>
-                                <label>Genre:</label>
+                                <label className={'labelSpace'}>Genre:</label>
                                 <input type={'text'} defaultValue={this.state.currentMovie.Genre}
                                        onBlur={(e)=> { genere = e.target.value}}
                                 ></input>
-                                <button
-                                    onClick={e=>{
-                                        e.preventDefault();
-                                        this.editMovie(this.state.currentMovie.id, title, year, _runtime, director, genere);
+                                <div className={'btnSpace'}>
+                                    <Button className={'labelSpace'}
+                                        onClick={e=>{
+                                            e.preventDefault();
+                                            this.editMovie(this.state.currentMovie.id, title, year, _runtime, director, genere);
+                                            this.closeEdit();
+                                        }
+                                        }
+                                    >Save</Button>
+                                    <Button onClick={(e)=>{
                                         this.closeEdit();
-                                    }
-                                    }
-                                >Save</button>
+                                    }}>Cancel</Button>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -313,18 +322,19 @@ class App extends Component {
                     <div style={dialogStyle()} >
                         <h4 id='modal-label'>are you sure you want to delete this movie?</h4>
 
-                        <button onClick={(e)=>{
+                        <div className={'btnSpace'}>
+                        <Button className={'labelSpace'} onClick={(e)=>{
                             e.preventDefault();
                             this.props.removeMovie(this.state.id);
                             this.closeDelete();
-                        }}>Delete</button>
-                        <button onClick={(e)=>{
+                        }}>Delete</Button>
+                        <Button  onClick={(e)=>{
                             e.preventDefault();
                             this.setState({showDeleteModal:false}
                             )
                         }
-                        }>Cancel</button>
-
+                        }>Cancel</Button>
+                        </div>
                     </div>
                 </Modal>
             </div>
