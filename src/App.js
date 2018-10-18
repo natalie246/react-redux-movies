@@ -41,14 +41,14 @@ class App extends Component {
 
 
     componentDidMount() {
-        fetch("http://www.omdbapi.com/?s=batman&apikey=ebfb52b7")
+        fetch("https://www.omdbapi.com/?s=batman&apikey=ebfb52b7")
             .then(res => res.json())
             .then(
                 (result) => {
                     const { Search } = result;
                     const calls = [];
                     Search.forEach(item => {
-                        calls.push(fetchCall(`http://www.omdbapi.com/?i=${item.imdbID}&apikey=ebfb52b7`));
+                        calls.push(fetchCall(`https://www.omdbapi.com/?i=${item.imdbID}&apikey=ebfb52b7`));
                     });
                     Promise.all(calls)
                         .then(movies => this.props.updateMovieList(movies)
