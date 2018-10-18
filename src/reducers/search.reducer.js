@@ -3,7 +3,7 @@ import uuidv1 from "uuid/v1";
 const initState={
     movies:[],
 };
-
+//
 export default function searchReducer(state = initState, action) {
     switch (action.type) {
 
@@ -22,12 +22,15 @@ export default function searchReducer(state = initState, action) {
             return {movies: movies};
         case 'addMovie':
             const updatedMovies = [...state.movies, action.payload];
+
             return {movies: updatedMovies};
         case 'removeMovie':
             const filtered = state.movies.filter(movie => movie.id !== action.payload);
+
             return {movies: filtered};
         case 'updateMovie':
             const updatedMovieList = state.movies.map(movie => {
+
                 if (movie.id === action.payload.id) {
                     movie = action.payload;
                 }

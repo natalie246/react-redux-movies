@@ -319,14 +319,14 @@ class App extends Component {
                     onHide={this.closeDelete}
                 >
                     <div style={dialogStyle()} >
-                        <h4 id='modal-label'>are you sure you want to delete this movie?</h4>
+                        <h4 id='modal-label'>Are you sure you want to delete this movie?</h4>
 
                         <div className={'btnSpace'}>
                         <Button className={'labelSpace'} onClick={(e)=>{
                             e.preventDefault();
                             this.props.removeMovie(this.state.id);
                             this.closeDelete();
-                        }}>Delete</Button>
+                        }}>Delete </Button>
                         <Button  onClick={(e)=>{
                             e.preventDefault();
                             this.setState({showDeleteModal:false}
