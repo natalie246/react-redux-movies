@@ -11,10 +11,9 @@ import {Modal,ListGroup,ListGroupItem, Button} from 'react-bootstrap';
 import uuidv1 from 'uuid/v1';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGhost,faTrash,faEdit,faPlusSquare } from '@fortawesome/free-solid-svg-icons'
+import { faTrash,faEdit,faPlusSquare } from '@fortawesome/free-solid-svg-icons'
 import './styles.css';
 
-library.add(faGhost)
 library.add(faTrash)
 library.add(faEdit)
 library.add(faPlusSquare)
