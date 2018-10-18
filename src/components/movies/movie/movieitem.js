@@ -4,23 +4,11 @@ import React, { Component}  from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import uuidv1 from "uuid/v1";
 
-
-
 export default  class Movieitem extends Component {
-
-    constructor() {
-        super();
-        this.state = {
-
-        }
-    }
-
 
     render() {
         return (
-
             <div>
-
                 <ListGroupItem style={{height:'60px'}}
                                key={'user'+this.props.i}>
                     <span className={'liFields'} ><img width='20px'  src={this.props.movie.Poster} /></span>
@@ -30,7 +18,6 @@ export default  class Movieitem extends Component {
                     <span className={'liFields'}> {this.props.movie.Director}</span>
                     <span className={'liFields'}> {this.props.movie.Genre}</span>
                     <div style={{display:'inline'}} onClick={e=>{
-                        // this.setState({currentMovie: this.props.movie});
                         this.props.updateCurrentMovie(this.props.movie)
                         this.props.openEdit();
                     }
@@ -39,7 +26,6 @@ export default  class Movieitem extends Component {
                     </div>
 
                     <div style={{display:'inline'}} onClick={e => {
-                        // this.setState({id: this.props.movie.id});
                         this.props.updateMovieId(this.props.movie.id)
                         this.props.openDelete();
                     }
@@ -47,12 +33,8 @@ export default  class Movieitem extends Component {
                     }> <FontAwesomeIcon style={{float:'right', marginRight:'10px'}} icon="trash" />
                     </div>
                 </ListGroupItem>
-
             </div>
         )
     }
-
-
-
 }
 

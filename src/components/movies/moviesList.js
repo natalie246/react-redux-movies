@@ -4,10 +4,13 @@ import React, { Component}  from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import uuidv1 from "uuid/v1";
 import Movieitem from "./movie/movieitem";
+import {bindActionCreators} from "redux";
+import {addMovie, removeMovie, updateCurrentMovie, updateMovie, updateMovieList} from "../../actions/actions";
+import connect from "react-redux/es/connect/connect";
 
 
 
-export default  class MoviesList extends Component {
+class MoviesList extends Component {
 
     constructor() {
         super();
@@ -307,4 +310,14 @@ export default  class MoviesList extends Component {
 
 
 }
+function mapDispatchToProps(dispatch) {
+    return {
+        // actions:
+        updateCurrentMovie: bindActionCreators(updateCurrentMovie, dispatch),
+        updateMovie: bindActionCreators(updateMovie, dispatch),
+        removeMovie: bindActionCreators(removeMovie, dispatch),
+        addMovie: bindActionCreators(addMovie, dispatch),
+    };
+}
 
+export default connect( mapDispatchToProps)(MoviesList);

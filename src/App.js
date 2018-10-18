@@ -38,8 +38,6 @@ class App extends Component {
         }
     }
 
-
-
     componentDidMount() {
         fetch("https://www.omdbapi.com/?s=batman&apikey=ebfb52b7")
             .then(res => res.json())
@@ -57,27 +55,15 @@ class App extends Component {
             )
     }
 
-
-
-
-
     render() {
-
-
 
         return (
             <div className="App">
-
-
 
             {this.props.movies.length > 0 &&
 
                     <MoviesList
                         movies={this.props.movies}
-                        updateCurrentMovie={this.props.updateCurrentMovie}
-                        updateMovie={this.props.updateMovie}
-                        removeMovie={this.props.removeMovie}
-                        addMovie={this.props.addMovie}
                     />
                 }
             </div>
@@ -95,10 +81,6 @@ function mapDispatchToProps(dispatch) {
     return {
         // actions:
         updateMovieList: bindActionCreators(updateMovieList, dispatch),
-        updateCurrentMovie: bindActionCreators(updateCurrentMovie, dispatch),
-        updateMovie: bindActionCreators(updateMovie, dispatch),
-        removeMovie: bindActionCreators(removeMovie, dispatch),
-        addMovie: bindActionCreators(addMovie, dispatch),
     };
 }
 
