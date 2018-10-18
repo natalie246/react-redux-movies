@@ -98,12 +98,12 @@ class App extends Component {
             return (
                 <ListGroupItem style={{height:'60px'}}
                     key={'user'+i}>
-                    <span style={{marginTop: '10px', marginLeft:'50px', float:'left'}}><img width='20px'  src={movie.Poster} /></span>
-                    <span style={{marginTop: '10px', marginLeft:'50px', float:'left'}}>{movie.Title}</span>
-                    <span style={{marginTop: '10px', marginLeft:'50px', float:'left'}}> {movie.Year}</span>
-                    <span style={{marginTop: '10px', marginLeft:'50px', float:'left'}}> {movie.Runtime}</span>
-                    <span style={{marginTop: '10px', marginLeft:'50px', float:'left'}}> {movie.Director}</span>
-                    <span style={{marginTop: '10px', marginLeft:'50px', float:'left'}}> {movie.Genre}</span>
+                    <span className={'liFields'} ><img width='20px'  src={movie.Poster} /></span>
+                    <span className={'liFields'}>{movie.Title}</span>
+                    <span className={'liFields'}> {movie.Year}</span>
+                    <span className={'liFields'}> {movie.Runtime}</span>
+                    <span className={'liFields'}> {movie.Director}</span>
+                    <span className={'liFields'}> {movie.Genre}</span>
                     <div style={{display:'inline'}} onClick={e=>{
                         this.setState({currentMovie: movie});
                         this.openEdit();
@@ -195,7 +195,7 @@ class App extends Component {
 
                                        }></input>
                             </div>
-                            <div style={{marginBottom:'10px'}}>
+                            <div className={'fieldsSpace'}>
                                 <label className={'labelSpace'}>Year:</label>
                                 <input required={true} type={'text'}
                                        onBlur={(e)=> {this.setState({newMovie: {
@@ -203,7 +203,7 @@ class App extends Component {
                                                Year: e.target.value}})}}
                                 ></input>
                             </div>
-                            <div style={{marginBottom:'10px'}}>
+                            <div className={'fieldsSpace'}>
                                 <label className={'labelSpace'}>Runtime:</label>
                                 <input required={true} type={'text'}
                                        onBlur={(e)=> {this.setState({newMovie: {
@@ -211,7 +211,7 @@ class App extends Component {
                                                Runtime: e.target.value}})}}
                                 ></input>
                             </div>
-                            <div style={{marginBottom:'10px'}}>
+                            <div className={'fieldsSpace'}>
                                 <label className={'labelSpace'}>Director:</label>
                                 <input required={true} type={'text'}
                                        onBlur={(e)=> {this.setState({newMovie: {
@@ -271,19 +271,19 @@ class App extends Component {
                                        }
                                        }></input>
                             </div>
-                            <div style={{marginBottom:'10px'}}>
+                            <div className={'fieldsSpace'}>
                                 <label className={'labelSpace'}>Year:</label>
                                 <input type={'text'} defaultValue={this.state.currentMovie.Year}
                                        onBlur={(e)=> {year = e.target.value}}
                                 ></input>
                             </div>
-                            <div style={{marginBottom:'10px'}}>
+                            <div className={'fieldsSpace'}>
                                 <label className={'labelSpace'}>Runtime:</label>
                                 <input type={'text'} defaultValue={this.state.currentMovie.Runtime}
                                        onBlur={(e)=> { _runtime = e.target.value }}
                                 ></input>
                             </div>
-                            <div style={{marginBottom:'10px'}}>
+                            <div className={'fieldsSpace'}>
                                 <label className={'labelSpace'}>Director:</label>
                                 <input type={'text'} defaultValue={this.state.currentMovie.Director}
                                        onBlur={(e)=> { director = e.target.value }}
